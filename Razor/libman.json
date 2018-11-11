@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap-datepicker@1.8.0",
+      "destination": "wwwroot/lib/bootstrap-datepicker/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap-table@1.12.1",
+      "destination": "wwwroot/lib/bootstrap-table/"
+    }
+  ]
+}

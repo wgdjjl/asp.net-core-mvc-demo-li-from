@@ -1,0 +1,95 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IndexViewModel
+
+<div>
+    <h1>Demoページ</h1>
+    <p>これはデモアプリケーションであり、スマホ対応していない。</p>
+    <hr />
+    <form class="form-horizontal" role="form" action="/Bank/Create" method="post">
+        <fieldset>
+            <legend>テスト</legend>
+            <div class="form-group">
+                <label class="control-label col-md-2">業務</label>
+                <div class="col-md-6">
+                    @foreach (Business b in Model.Businesses)
+                    {
+                        <div class="">
+                            <div class="form-check col-md-4">
+                                <input class="form-check-input" type="radio" name="business" id="business_@b.Id" value="@b.Id">
+                                <label class="form-check-label" for="business_@b.Id">
+                                    @b.Name
+                                </label>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <div class="form-group" id="calender-container">
+                <label class="control-label col-md-2">使用開始日</label>
+                <div class="input-group date col-md-3">
+                    <input asp-for="Start" type="text" class="form-control">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+            </div>
+            <div class="form-group" id="bank-info">
+                <label class="control-label col-md-2">金融機関</label>
+                <div class="input-group col-md-6">
+                    <span class="input-group-addon" style=" border-right: 0;">コード</span>
+                    <input type="text" class="form-control" id="code" name="code" maxlength="4" style="width:5em;">
+                    <span class="input-group-addon" style="border-left: 0; border-right: 0;width:0;padding:0;"></span>
+                    <input type="text" class="form-control" id="name" name="name" readonly>
+                    <span class="input-group-addon" style="border-left: 0; border-right: 0;width:0;padding:0;"></span>
+                    <input type="text" class="form-control" id="furigana" name="furigana" readonly>
+                    <span class="input-group-append input-group-btn">
+                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" aria-describedby="basic-addon1">入力</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2">
+                    <button type="submit" class="btn btn-default">進める</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- 内容 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">金融機関</h4>
+            </div>
+            <div class="modal-body">
+                <div class="btn-toolbar col-md-12" role="toolbar" aria-label="quick find buttons">
+                    <div class="btn-group mr-2" role="group" aria-label="first group">
+                        <button type="button" class="btn btn-default" id="quick-all">すべて</button>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="second group">
+                        <button type="button" class="btn btn-default" id="quick-a">あ</button>
+                        <button type="button" class="btn btn-default" id="quick-ka">か</button>
+                        <button type="button" class="btn btn-default" id="quick-sa">さ</button>
+                        <button type="button" class="btn btn-default" id="quick-ta">た</button>
+                        <button type="button" class="btn btn-default" id="quick-na">な</button>
+                        <button type="button" class="btn btn-default" id="quick-ha">は</button>
+                        <button type="button" class="btn btn-default" id="quick-ma">ま</button>
+                        <button type="button" class="btn btn-default" id="quick-ya">や</button>
+                        <button type="button" class="btn btn-default" id="quick-ra">ら</button>
+                        <button type="button" class="btn btn-default" id="quick-wa">わ</button>
+                    </div>
+                </div>
+                <div id="toolbar"></div>
+                <table id="bank-list"></table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
